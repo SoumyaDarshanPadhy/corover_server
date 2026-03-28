@@ -53,6 +53,10 @@ export const getSessionsData = async (page, limit) => {
     return await dashboardRepository.getSessions(page, limit);
 };
 
+export const searchSessionsData = async (searchTerm, page, limit) => {
+    return await dashboardRepository.searchSessions(searchTerm, page, limit);
+};
+
 export const getRawQueriesData = async (page, limit, sessionId) => {
     return await dashboardRepository.getRawQueries(page, limit, sessionId);
 };

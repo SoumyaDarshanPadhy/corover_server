@@ -148,3 +148,69 @@ export const getRawQueries = async (page = 1, limit = 20, sessionId) => {
         totalPages: Math.ceil(total / limit)
     };
 };
+
+export const searchSessions = async (searchTerm = "", page = 1, limit = 20) => {
+    page = Number(page) || 1;
+    limit = Number(limit) || 20;
+
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+    if (searchTerm && searchTerm.trim()) {
+        filter.sessionId = { $regex: searchTerm.trim(), $options: "i" };
+    }
+
+    const [sessions, total] = await Promise.all([
+        Chat.aggregate([
+            {
+                $match: filter
+            },
+            {
+                $group: {
+                    _id: "$sessionId",
+                    messageCount: { $sum: 1 },
+                    startTime: { $min: "$timestamp" },
+                    lastActivity: { $max: "$timestamp" }
+                }
+            },
+            {
+                $sort: { lastActivity: -1 }
+            },
+            {
+                $skip: skip
+            },
+            {
+                $limit: limit
+            },
+            {
+                $project: {
+                    _id: 0,
+                    sessionId: "$_id",
+                    messageCount: 1,
+                    startTime: 1,
+                    lastActivity: 1
+                }
+            }
+        ]),
+
+        Chat.aggregate([
+            {
+                $match: filter
+            },
+            {
+                $group: { _id: "$sessionId" }
+            },
+            {
+                $count: "total"
+            }
+        ])
+    ]);
+
+    return {
+        sessions,
+        total: total[0]?.total || 0,
+        page,
+        limit,
+        totalPages: Math.ceil((total[0]?.total || 0) / limit)
+    };
+};
