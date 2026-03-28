@@ -1,0 +1,268 @@
+{
+  "info": {
+    "_postman_id": "7ad7647c-b647-449d-ae5d-4ecbbed23470",
+    "name": "COROVER",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20325280",
+    "_collection_link": "https://go.postman.co/collection/20325280-7ad7647c-b647-449d-ae5d-4ecbbed23470?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CHAT",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"\",\n  \"message\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{SERVER}}/chat/message",
+          "host": [
+            "{{SERVER}}"
+          ],
+          "path": [
+            "chat",
+            "message"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Chat History",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SERVER}}/chat/history/:sessionId?page=1&limit=7",
+          "host": [
+            "{{SERVER}}"
+          ],
+          "path": [
+            "chat",
+            "history",
+            ":sessionId"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "7"
+            }
+          ],
+          "variable": [
+            {
+              "key": "sessionId",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Dashboard Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"apiKey\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{SERVER}}/dashboard/login",
+          "host": [
+            "{{SERVER}}"
+          ],
+          "path": [
+            "dashboard",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get stats",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SERVER}}/dashboard/stats",
+          "host": [
+            "{{SERVER}}"
+          ],
+          "path": [
+            "dashboard",
+            "stats"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Sessions",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SERVER}}/dashboard/sessions?page=1&limit=5",
+          "host": [
+            "{{SERVER}}"
+          ],
+          "path": [
+            "dashboard",
+            "sessions"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get raw-queries",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SERVER}}/dashboard/raw-queries?page=1&limit=5",
+          "host": [
+            "{{SERVER}}"
+          ],
+          "path": [
+            "dashboard",
+            "raw-queries"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get raw-queries by sessionId",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SERVER}}/dashboard/raw-queries?sessionId=",
+          "host": [
+            "{{SERVER}}"
+          ],
+          "path": [
+            "dashboard",
+            "raw-queries"
+          ],
+          "query": [
+            {
+              "key": "sessionId",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "SERVER",
+      "value": ""
+    }
+  ]
+}
